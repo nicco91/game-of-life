@@ -1,4 +1,5 @@
 import { InputData } from '../models/inputData';
+import { Grid } from '../models/grid';
 
 let fileReader: FileReader;
 
@@ -33,11 +34,12 @@ const _getGridSize = (gridSizeRow: string) => {
 };
 
 const _getGrid = (gridRows: string[], cols: number) => {
-  return gridRows.reduce<boolean[]>((acc, row) => {
+  return gridRows.reduce<Grid>((acc, row) => {
     const parsedRow = Array.from(row)
       .slice(0, cols)
       .map((char) => char === '*');
-    return acc.concat(parsedRow);
+    acc.push(parsedRow);
+    return acc;
   }, []);
 };
 
