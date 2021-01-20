@@ -1,8 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
-import { gridToString } from './functions/formatter';
-import { calculateNextGeneration } from './functions/gamer';
-import { parseInput } from './functions/parser';
-import { InputData } from './models/inputData';
+import { gridToString } from '../functions/formatter';
+import { calculateNextGeneration } from '../functions/gamer';
+import { parseInput } from '../functions/parser';
+import { InputData } from '../models/inputData';
+import FileUpload from './ui/FileUpload';
 
 const App: FC = () => {
   const [inputData, setInputData] = useState<InputData>();
@@ -18,11 +19,10 @@ const App: FC = () => {
     console.log('-------------------------');
   }, [inputData]);
 
-  const handleChange = async (files: FileList | null) => {
-    if (files && files.length) {
-      const data = await parseInput(files[0]);
+  const handleUpload = async (file?: File) => {
+    if (file) {
+      const data = await parseInput(file);
       setInputData(data);
-      // console.log('Parsed input', 'rows', data?.rows, 'cols', data?.cols);
     } else {
       console.log('No file selected');
     }
@@ -42,7 +42,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <input type="file" onChange={(e) => handleChange(e.target.files)} />
+      <FileUpload onUpload={handleUpload} />
       <button onClick={handleClick}>Calc next gen</button>
     </div>
   );
