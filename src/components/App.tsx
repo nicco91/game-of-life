@@ -1,12 +1,19 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
+import { shallowEqual, useSelector } from 'react-redux';
+
 import { gridToString } from '../functions/formatter';
-import { calculateNextGeneration } from '../functions/gamer';
-import { parseInput } from '../functions/parser';
-import { InputData } from '../models/inputData';
-import FileUpload from './ui/FileUpload';
+import { RootState } from '../store';
+
+import Game from './Game';
+import Init from './Init';
+import Layout from './Layout';
 
 const App: FC = () => {
-  const [inputData, setInputData] = useState<InputData>();
+  const inputData = useSelector(
+    (state: RootState) => state.game.inputData,
+    shallowEqual,
+  );
+  const gameStarted = Boolean(inputData);
 
   useEffect(() => {
     console.log('-------------------------');
@@ -19,31 +26,9 @@ const App: FC = () => {
     console.log('-------------------------');
   }, [inputData]);
 
-  const handleUpload = async (file?: File) => {
-    if (file) {
-      const data = await parseInput(file);
-      setInputData(data);
-    } else {
-      console.log('No file selected');
-    }
-  };
-
-  const handleClick = () => {
-    if (inputData) {
-      const nextGen = calculateNextGeneration(inputData);
-      setInputData({
-        ...inputData,
-        generation: inputData.generation + 1,
-        grid: nextGen,
-      });
-      // console.log(nextGen);
-    }
-  };
-
   return (
     <div className="App">
-      <FileUpload onUpload={handleUpload} />
-      <button onClick={handleClick}>Calc next gen</button>
+      <Layout>{gameStarted ? <Game /> : <Init />}</Layout>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { VFC } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { FiUpload } from 'react-icons/fi';
 import styled from 'styled-components';
 import FileUploadContainer from './FileUploadContainer';
 
@@ -22,9 +23,12 @@ const FileUpload: VFC<Props> = ({ className, onUpload }) => {
     <FileUploadContainer {...getRootProps()} isDragActive={isDragActive}>
       <input {...getInputProps()} />
       <p>
+        <FiUpload size={64} />
+      </p>
+      <p>
         {isDragActive
-          ? 'Drop the files here...'
-          : 'Drag & drop some files here, or click to select files'}
+          ? 'Drop the file here...'
+          : 'Drag & drop the input file here, or click to select file'}
       </p>
     </FileUploadContainer>
   );

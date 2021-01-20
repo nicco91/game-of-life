@@ -8,6 +8,7 @@ export default styled.div<Props>`
   height: 400px;
   width: 400px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border: ${(props) =>
@@ -26,5 +27,17 @@ export default styled.div<Props>`
       : props.theme.background.color};
   font-size: 24px;
   color: ${(props) =>
-    props.isDragActive ? 'rgba(127, 25, 158, 1)' : '#202020'};
+    props.isDragActive
+      ? props.theme.palette.primary.main
+      : props.theme.typography.color};
+  transition: all 0.2s ease-out;
+  font-weight: 500;
+
+  &:hover {
+    background: ${(props) => props.theme.palette.primary.background};
+    color: ${(props) => props.theme.palette.primary.main};
+    border-color: ${(props) => props.theme.palette.primary.main};
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+  }
 `;

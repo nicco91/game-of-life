@@ -3,8 +3,13 @@ import { DefaultTheme } from 'styled-components';
 const theme: DefaultTheme = {
   palette: {
     primary: {
-      main: 'rgb(127, 25, 158)',
-      background: 'rgb(127, 25, 158, 0.05)',
+      main: 'rgb(235, 0, 139)',
+      background: 'rgb(235, 0, 139, 0.15)',
+      contrastText: '#ffffff',
+    },
+    secondary: {
+      main: 'rgb(0, 188, 241)',
+      background: 'rgb(0, 188, 241, 0.15)',
       contrastText: '#ffffff',
     },
   },
