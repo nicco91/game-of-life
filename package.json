@@ -1,6 +1,11 @@
 {
   "name": "game-of-life",
-  "version": "1.0.0",
+  "author": {
+    "name": "Niccolò Taddei",
+    "email": "n.taddei91@gmail.com",
+    "url": "https://www.linkedin.com/in/ntaddei/"
+  },
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.0",
