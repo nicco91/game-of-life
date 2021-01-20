@@ -8,10 +8,13 @@ type Props = {
 export default styled.div<Props>`
   width: ${(props) => props.size}px;
   height: ${(props) => props.size}px;
-  border-right: 1px solid ${(props) => props.theme.border.color};
   display: inline-block;
   background: ${(props) =>
-    props.alive
-      ? props.theme.palette.secondary.main
-      : props.theme.background.color};
+    props.alive ? props.theme.palette.primary.main : props.theme.border.color};
+  border-radius: 3px;
+  flex: 0 0 auto;
+
+  &:not(:last-child) {
+    margin-right: 3px;
+  }
 `;

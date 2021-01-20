@@ -17,6 +17,7 @@ const FileUpload: VFC<Props> = ({ className, onUpload }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     multiple: false,
+    accept: '.txt',
   });
 
   return (
