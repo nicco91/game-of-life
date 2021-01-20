@@ -5,8 +5,10 @@ type Props = {
 };
 
 export default styled.div<Props>`
-  height: 400px;
-  width: 400px;
+  max-height: 400px;
+  max-width: 400px;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,11 +23,10 @@ export default styled.div<Props>`
   border-radius: 24px;
   box-sizing: border-box;
   text-align: center;
-  margin: 2rem;
   background: ${(props) =>
     props.isDragActive
       ? props.theme.palette.primary.background
-      : props.theme.background.color};
+      : props.theme.background.base};
   font-size: 24px;
   color: ${(props) =>
     props.isDragActive

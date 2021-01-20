@@ -1,7 +1,6 @@
 import React, { VFC } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { FiUpload } from 'react-icons/fi';
-import styled from 'styled-components';
 import FileUploadContainer from './FileUploadContainer';
 
 type Props = {
@@ -21,7 +20,11 @@ const FileUpload: VFC<Props> = ({ className, onUpload }) => {
   });
 
   return (
-    <FileUploadContainer {...getRootProps()} isDragActive={isDragActive}>
+    <FileUploadContainer
+      {...getRootProps()}
+      className={className}
+      isDragActive={isDragActive}
+    >
       <input {...getInputProps()} />
       <p>
         <FiUpload size={64} />
@@ -35,4 +38,4 @@ const FileUpload: VFC<Props> = ({ className, onUpload }) => {
   );
 };
 
-export default styled(FileUpload)``;
+export default FileUpload;

@@ -5,9 +5,9 @@ import { InputData } from '../../models/inputData';
 import { RootState } from '../../store';
 
 import Grid from '../ui/Grid';
+import Subtitle from '../ui/Subtitle';
 import GameActions from './GameActions';
 import GameContainer from './GameContainer';
-import GameHeading from './GameHeading';
 
 const Game = () => {
   const inputData = useSelector(
@@ -15,10 +15,12 @@ const Game = () => {
     shallowEqual,
   );
 
+  const { grid, cols, rows } = inputData;
+
   return (
     <GameContainer>
-      <GameHeading generation={inputData.generation} />
-      <Grid grid={inputData.grid} />
+      <Subtitle>Generation: {inputData.generation}</Subtitle>
+      <Grid grid={grid} cols={cols} rows={rows} additionalHSpace={16} />
       <GameActions />
     </GameContainer>
   );

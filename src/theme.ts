@@ -16,7 +16,8 @@ const theme: DefaultTheme = {
     },
   },
   background: {
-    color: '#fafafa',
+    base: '#fafafa',
+    dark: '#e0e0e0',
   },
   border: {
     color: '#afafaf',

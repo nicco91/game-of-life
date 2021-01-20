@@ -14,7 +14,8 @@ declare module 'styled-components' {
       secondary: ThemePalette;
     };
     background: {
-      color: string;
+      base: string;
+      dark: string;
     };
     typography: {
       color: string;

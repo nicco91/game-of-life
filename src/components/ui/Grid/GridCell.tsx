@@ -10,7 +10,9 @@ export default styled.div<Props>`
   height: ${(props) => props.size}px;
   display: inline-block;
   background: ${(props) =>
-    props.alive ? props.theme.palette.primary.main : props.theme.border.color};
+    props.alive
+      ? props.theme.palette.primary.main
+      : props.theme.background.dark};
   border-radius: 3px;
   flex: 0 0 auto;
 

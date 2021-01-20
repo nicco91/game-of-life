@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { startGame } from '../store/gameSlice';
 import FileUpload from './ui/FileUpload';
 import Subtitle from './ui/Subtitle';
 
-const Init = () => {
+type Props = {
+  className?: string;
+};
+
+const Init: FC<Props> = ({ className }) => {
   const dispatch = useDispatch();
 
   const handleUpload = async (file?: File) => {
@@ -16,11 +21,19 @@ const Init = () => {
   };
 
   return (
-    <div>
+    <div className={className}>
       <Subtitle>Upload an input file to start the game!</Subtitle>
-      <FileUpload onUpload={handleUpload} />
+      <FileUpload className="uploader" onUpload={handleUpload} />
     </div>
   );
 };
 
-export default Init;
+export default styled(Init)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .uploader {
+    margin-top: 2rem;
+  }
+`;
