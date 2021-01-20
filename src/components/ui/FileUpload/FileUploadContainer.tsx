@@ -18,6 +18,7 @@ export default styled.div<Props>`
         : props.theme.border.color
     }`};
   padding: 2rem;
+  border-radius: 24px;
   box-sizing: border-box;
   text-align: center;
   margin: 2rem;
@@ -39,5 +40,10 @@ export default styled.div<Props>`
     border-color: ${(props) => props.theme.palette.primary.main};
     cursor: pointer;
     transition: all 0.2s ease-out;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;

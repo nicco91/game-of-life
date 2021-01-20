@@ -1,30 +1,26 @@
 import React from 'react';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { calculateNextGeneration } from '../../functions/gamer';
+import { useSelector, shallowEqual } from 'react-redux';
+
+import { InputData } from '../../models/inputData';
 import { RootState } from '../../store';
-import { setNextGen } from '../../store/gameSlice';
+
+import Grid from '../ui/Grid';
+import GameActions from './GameActions';
+import GameContainer from './GameContainer';
+import GameHeading from './GameHeading';
 
 const Game = () => {
   const inputData = useSelector(
-    (state: RootState) => state.game.inputData,
+    (state: RootState) => state.game.inputData as InputData,
     shallowEqual,
   );
-  const dispatch = useDispatch();
-
-  const handleClick = () => {
-    if (inputData) {
-      const nextGen = calculateNextGeneration(inputData);
-      dispatch(setNextGen(nextGen));
-    }
-  };
 
   return (
-    <div>
-      Game
-      <button type="button" onClick={handleClick}>
-        Generate next
-      </button>
-    </div>
+    <GameContainer>
+      <GameHeading generation={inputData.generation} />
+      <Grid grid={inputData.grid} />
+      <GameActions />
+    </GameContainer>
   );
 };
 

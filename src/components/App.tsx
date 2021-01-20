@@ -7,10 +7,12 @@ import { RootState } from '../store';
 import Game from './Game';
 import Init from './Init';
 import Layout from './Layout';
+import Error from './Error';
+import Loader from './Loader';
 
 const App: FC = () => {
-  const inputData = useSelector(
-    (state: RootState) => state.game.inputData,
+  const { inputData, error, loading } = useSelector(
+    (state: RootState) => state.game,
     shallowEqual,
   );
   const gameStarted = Boolean(inputData);
@@ -28,7 +30,10 @@ const App: FC = () => {
 
   return (
     <div className="App">
-      <Layout>{gameStarted ? <Game /> : <Init />}</Layout>
+      <Layout>
+        {loading && <Loader />}
+        {error ? <Error /> : gameStarted ? <Game /> : <Init />}
+      </Layout>
     </div>
   );
 };

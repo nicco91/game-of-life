@@ -3,6 +3,7 @@ import 'styled-components';
 declare module 'styled-components' {
   interface ThemePalette {
     main: string;
+    dark: string;
     background: string;
     contrastText: string;
   }

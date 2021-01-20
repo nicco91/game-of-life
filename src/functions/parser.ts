@@ -4,7 +4,7 @@ import { Grid } from '../models/grid';
 let fileReader: FileReader;
 
 const _readFile = async (file: File) => {
-  return new Promise<string[] | undefined>((resolve, reject) => {
+  return new Promise<string[]>((resolve, reject) => {
     try {
       fileReader = new FileReader();
       fileReader.onloadend = () => {
@@ -12,7 +12,11 @@ const _readFile = async (file: File) => {
           const content = fileReader.result;
           const textContent = content?.toString();
           const rows = textContent?.split('\n');
-          resolve(rows);
+          if (rows) {
+            resolve(rows);
+          } else {
+            reject(new Error('Unable to read file.'));
+          }
         } catch (err) {
           reject(err);
         }
@@ -45,15 +49,12 @@ const _getGrid = (gridRows: string[], cols: number) => {
 
 export const parseInput = async (file: File) => {
   const fileRows = await _readFile(file);
-  if (fileRows) {
-    const { cols, rows } = _getGridSize(fileRows[1]);
-    const gridRows = fileRows.slice(2, 2 + rows);
-    return {
-      generation: _getGenerationNum(fileRows[0]),
-      rows,
-      cols,
-      grid: _getGrid(gridRows, cols),
-    } as InputData;
-  }
-  return undefined;
+  const { cols, rows } = _getGridSize(fileRows[1]);
+  const gridRows = fileRows.slice(2, 2 + rows);
+  return {
+    generation: _getGenerationNum(fileRows[0]),
+    rows,
+    cols,
+    grid: _getGrid(gridRows, cols),
+  } as InputData;
 };

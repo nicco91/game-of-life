@@ -19,7 +19,6 @@ export default styled(LayoutTitle)`
   width: 100%;
   padding: 1rem;
   box-sizing: border-box;
-  margin-bottom: 1.5rem;
 
   .title {
     flex: 0 1 auto;
