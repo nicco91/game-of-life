@@ -1,11 +1,4 @@
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Grid as GridType } from '../../../models/grid';
 import GridCell from './GridCell';
 import GridContainer from './GridContainer';
@@ -37,7 +30,7 @@ const Grid: FC<Props> = ({
         setSize(Math.min(cellHeight, cellWidth));
       }
     },
-    [cols, rows, additionalHSpace, additionalWSpace],
+    [cols, rows, additionalHSpace, additionalWSpace]
   );
 
   return (

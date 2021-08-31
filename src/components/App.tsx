@@ -7,12 +7,11 @@ import Game from './Game';
 import Init from './Init';
 import Layout from './Layout';
 import Error from './Error';
-import Loader from './Loader';
 
 const App: FC = () => {
   const { inputData, error } = useSelector(
     (state: RootState) => state.game,
-    shallowEqual,
+    shallowEqual
   );
   const gameStarted = Boolean(inputData);
 
